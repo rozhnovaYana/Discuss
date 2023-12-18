@@ -3,7 +3,12 @@ import GitHub from "next-auth/providers/github";
 import { db } from "./db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
-export default NextAuth({
+export const {
+  handlers: { GET, POST },
+  signIn,
+  signOut,
+  auth,
+} = NextAuth({
   adapter: PrismaAdapter(db),
   providers: [
     GitHub({
@@ -11,4 +16,13 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    // the callback is need to get ID in the session object
+    async session({ session, user }: any) {
+      if (session && user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
 });
