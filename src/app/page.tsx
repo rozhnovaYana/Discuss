@@ -1,8 +1,5 @@
-import { auth } from "@/auth";
 import Profile from "@/components/Profile";
-const Home = async () => {
-  const session = await auth();
-
+const Home = () => {
   return (
     <div>
       <Profile />
