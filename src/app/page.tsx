@@ -1,9 +1,4 @@
-import Profile from "@/components/Profile";
 const Home = () => {
-  return (
-    <div>
-      <Profile />
-    </div>
-  );
+  return <div></div>;
 };
 export default Home;
