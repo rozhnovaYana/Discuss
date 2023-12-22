@@ -4,7 +4,7 @@ import HeaderAuth from "./HeaderAuth";
 
 const Header = () => {
   return (
-    <Navbar>
+    <Navbar className="shadow mb-6 py-2">
       <NavbarBrand>
         <Link href="/" className="font-bold">
           Discuss
