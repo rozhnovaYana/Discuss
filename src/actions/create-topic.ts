@@ -1,7 +1,11 @@
 "use server";
-
+import type { Topic } from "@prisma/client";
 import { auth } from "@/auth";
 import { z } from "zod";
+import { db } from "@/db";
+import paths from "@/paths";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const schema = z.object({
   name: z
@@ -39,7 +43,22 @@ export const createTopic = async (
       },
     };
   }
-  return {
-    errors: {},
-  };
+  let topic: Topic;
+  try {
+    topic = await db.topic.create({
+      data: {
+        slug: validationFields.data.name,
+        description: validationFields.data.description,
+      },
+    });
+  } catch (err: unknown) {
+    const issue = err instanceof Error ? err.message : "Something went wrong";
+    return {
+      errors: {
+        _form: issue,
+      },
+    };
+  }
+  revalidatePath("/");
+  redirect(paths.topic(topic.slug));
 };
