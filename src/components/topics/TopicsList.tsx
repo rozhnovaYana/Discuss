@@ -13,7 +13,7 @@ const TopicsList = async () => {
           <div key={topic.id}>
             <Link href={paths.topic(topic.slug)}>
               <Chip
-                className="whitespace-normal h-max	"
+                className="p-2 whitespace-normal h-max	"
                 variant="shadow"
                 color="primary"
               >
