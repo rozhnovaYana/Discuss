@@ -1,4 +1,6 @@
 import CreateTopic from "@/components/topics/CreateTopic";
+import TopicsList from "@/components/topics/TopicsList";
+import { Divider } from "@nextui-org/react";
 
 const Home = () => {
   return (
@@ -8,6 +10,8 @@ const Home = () => {
       </div>
       <div>
         <CreateTopic />
+        <Divider className="my-4"/>
+        <TopicsList />
       </div>
     </div>
   );
