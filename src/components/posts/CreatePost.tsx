@@ -1,12 +1,15 @@
 "use client";
 import PopoverWrapper from "../common/Popover";
 import FormWrapper from "../common/FormWrapper";
-import { Input } from "@nextui-org/react";
+import { Input, Textarea } from "@nextui-org/react";
 import { useFormState } from "react-dom";
 import { createPost } from "@/actions";
 
-const CreatePost = () => {
-  const [state, action] = useFormState(createPost, { errors: {} });
+const CreatePost = ({ slug }: { slug: string }) => {
+  const [state, action] = useFormState(createPost.bind(null, slug), {
+    errors: {},
+  });
+
   return (
     <PopoverWrapper trigger="Create a post">
       <FormWrapper formAction={action} title="Create a post">
@@ -15,13 +18,20 @@ const CreatePost = () => {
           label="Title"
           placeholder="Title"
           labelPlacement="outside"
+          isInvalid={!!state?.errors?.title}
+          errorMessage={state?.errors?.title?.join(", ")}
         />
-        <Input
+        <Textarea
           name="content"
           label="Content"
           placeholder="Content"
           labelPlacement="outside"
+          isInvalid={!!state?.errors?.content}
+          errorMessage={state?.errors?.content?.join(", ")}
         />
+        {state?.errors?._form && (
+          <div className="p-2 rounded bg-red-200">{state.errors._form}</div>
+        )}
       </FormWrapper>
     </PopoverWrapper>
   );

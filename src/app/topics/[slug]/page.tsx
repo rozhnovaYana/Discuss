@@ -12,7 +12,7 @@ const Topic = ({ params }: TopicProps) => {
       <div className="col-span-4">
         <h2 className="font-bold text-xl">{slug}</h2>
       </div>
-      <CreatePost />
+      <CreatePost slug={slug} />
     </div>
   );
 };
