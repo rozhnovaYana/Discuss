@@ -1,4 +1,3 @@
-import type { Post, User, Topic } from "@prisma/client";
 import Link from "next/link";
 import paths from "@/paths";
 import { PostItem } from "@/db/queries/posts";
@@ -16,7 +15,7 @@ export default async function PostList({ fetchData }: PostListProps) {
 
     return (
       <div key={post.id} className="border rounded p-2">
-        <Link href={paths.post(topicSlug, post.id)}>
+        <Link href={paths.post(post.id, topicSlug)}>
           <h3 className="text-lg font-bold">{post.title}</h3>
           <div className="flex flex-row gap-8">
             <p className="text-xs text-gray-400">By {post.user.name}</p>
