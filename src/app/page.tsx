@@ -4,7 +4,8 @@ import TopicsList from "@/components/topics/TopicsList";
 import { getTopPosts } from "@/db/queries/posts";
 import { Divider } from "@nextui-org/react";
 
-const Home = () => {
+const Home = ({ searchParams }: { searchParams: { tertm: string } }) => {
+  console.log(searchParams);
   return (
     <div className="grid grid-cols-5 gap-4 px-6">
       <div className="col-span-4">

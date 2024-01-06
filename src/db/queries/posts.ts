@@ -44,3 +44,23 @@ export const getTopPosts = () => {
     take: 5,
   });
 };
+export const getPostByTerm = (term: string) => {
+  return db.post.findMany({
+    where: {
+      OR: [{ content: { contains: term } }, { title: { contains: term } }],
+    },
+    include: {
+      user: {
+        select: { name: true },
+      },
+      topic: {
+        select: { slug: true },
+      },
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
+    },
+  });
+};
