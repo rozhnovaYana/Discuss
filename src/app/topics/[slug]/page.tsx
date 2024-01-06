@@ -1,5 +1,5 @@
 import CreatePost from "@/components/posts/CreatePost";
-import PostList from "@/components/posts/post-list";
+import PostList from "@/components/posts/PostList";
 import { getTopicPosts } from "@/db/queries/posts";
 
 interface TopicProps {

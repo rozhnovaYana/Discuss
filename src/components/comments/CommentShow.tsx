@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CommentCreateForm from "@/components/comments/comment-create-form";
+import CommentCreateForm from "@/components/comments/CommentCreateForm";
 import { CommentsWithAuthor } from "@/db/queries/comments";
 
 interface CommentShowProps {

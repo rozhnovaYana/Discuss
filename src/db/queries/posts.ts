@@ -20,3 +20,27 @@ export const getTopicPosts = (slug: string) => {
     },
   });
 };
+
+export const getTopPosts = () => {
+  return db.post.findMany({
+    orderBy: {
+      comments: {
+        _count: "desc",
+      },
+    },
+    include: {
+      user: {
+        select: { name: true },
+      },
+      topic: {
+        select: { slug: true },
+      },
+      _count: {
+        select: {
+          comments: true,
+        },
+      },
+    },
+    take: 5,
+  });
+};
